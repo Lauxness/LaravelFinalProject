@@ -20,6 +20,7 @@ class CreateTenantsTable extends Migration
 
             $table->timestamps();
             $table->json('data')->nullable();
+            $table->string('version')->default('v1.0.0');
         });
     }
 

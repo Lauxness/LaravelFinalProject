@@ -12,6 +12,7 @@ use App\Http\Controllers\TenantApp\SupportController;
 use App\Http\Controllers\TenantApp\TenantProfileController;
 use App\Http\Controllers\TenantApp\TenantUserController;
 use App\Http\Controllers\TenantApp\TenantsLayoutController;
+use App\Http\Controllers\TenantApp\TenantVersionController;
 use App\Http\Middleware\AdminMiddelware;
 use App\Http\Middleware\SubDomainPauseChecker;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,9 @@ Route::middleware([
     Route::get('/prices', function () {
         return view('tenants.pages.subscriptions');
     })->middleware(['auth', AdminMiddelware::class])->name('subscriptions');
+
+    Route::post('/tenant/update-version', [TenantVersionController::class, 'update'])->name('tenant.update.version');
+
 
     Route::get('/auth/google', [SocialateController::class, 'googleLogin'])->name('google.login');
     Route::patch('tenants_layout', [TenantsLayoutController::class, 'update'])->middleware(['auth', AdminMiddelware::class])->name('update_layout');

@@ -21,7 +21,8 @@ class Tenant extends BaseTenant implements TenantWithDatabase
         'companyName',
         'data',
         'isPaused',
-        'plan'
+        'plan',
+        'version'
     ];
     protected $casts = [
         'data' => 'array',

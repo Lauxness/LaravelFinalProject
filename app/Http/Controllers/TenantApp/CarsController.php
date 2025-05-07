@@ -18,14 +18,12 @@ class CarsController extends Controller
     {
         $tenant = tenant();
         $plan = $tenant->plan ?? 'free';
-
         $limit = match ($plan) {
             'free' => 3,
             'standard' => 5,
             'premium' => 10,
             default => 3,
         };
-
         $cars = Cars::latest()->take($limit)->get();
 
         if (Auth::user()->role == 'admin') {

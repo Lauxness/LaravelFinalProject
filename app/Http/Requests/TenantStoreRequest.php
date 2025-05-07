@@ -31,4 +31,10 @@ class TenantStoreRequest extends FormRequest
             'plan' => 'required|in:free,standard,premium'
         ];
     }
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'version' => $this->input('version', 'v1.0.0'),
+        ]);
+    }
 }
