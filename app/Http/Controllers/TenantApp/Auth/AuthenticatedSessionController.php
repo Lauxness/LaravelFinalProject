@@ -15,10 +15,9 @@ class AuthenticatedSessionController extends Controller
     {
         $tenant = tenant();
         if (version_compare($tenant->version, 'v2.0.0', '>=')) {
-            return view('tenants.auth.tenant-login');
-        } else {
-
             return view('tenants.auth.tenant-login-v2');
+        } else {
+            return view('tenants.auth.tenant-login');
         }
     }
     /**
