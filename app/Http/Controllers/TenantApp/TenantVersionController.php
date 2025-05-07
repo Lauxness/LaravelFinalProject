@@ -4,6 +4,7 @@ namespace App\Http\Controllers\TenantApp;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
 
 class TenantVersionController extends Controller
@@ -15,7 +16,11 @@ class TenantVersionController extends Controller
 
         $latestVersion = $this->getLatestGitHubReleaseVersion();
         $tenant->update(['version' => $latestVersion]);
-        return redirect()->back()->with('success', 'Updated to'  . $latestVersion);
+        Artisan::call('tenants:migrate', [
+            '--tenants' => [$tenant->id],
+            '--force' => true,
+        ]);
+        return redirect()->back()->with('success', 'Updated to '  . $latestVersion);
     }
     private function getLatestGitHubReleaseVersion()
     {

@@ -9,6 +9,6 @@ class SocialateController extends Controller
 {
     public function googleLogin()
     {
-        return Socialite::driver('google')->redirect()->to("http://localhost/google/login");
+        return Socialite::driver('google')->redirect();
     }
 }

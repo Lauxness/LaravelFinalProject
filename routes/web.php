@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialateController;
 use App\Http\Controllers\TenantController;
 use App\Mail\Mailer;
 use Illuminate\Support\Facades\Mail;
@@ -20,6 +21,7 @@ foreach (config('tenancy.central_domains') as $domain) {
         Route::resource('tenants', TenantController::class)->middleware(['auth', 'verified']);
         Route::get('tenants/create', [TenantController::class, 'create'])->name('tenants.create')->withoutMiddleware(['auth', 'verified']);
         Route::post('tenants', [TenantController::class, 'store'])->name('tenants.store')->withoutMiddleware(['auth', 'verified']);
+        Route::get('/auth/google/callback', [SocialateController::class, 'googleAuth'])->name('google.callback');
 
         Route::post('/tenants/{id}/accept', [TenantController::class, 'accept'])->name('tenants.accept');
         Route::middleware('auth')->group(function () {

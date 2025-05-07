@@ -121,14 +121,16 @@
                         </form>
                     </li>
                 </ul>
+                @if($tenant && $tenant->version !== $latestVersion)
                 <div class="card text-center">
                     <form class="card-body" action="{{ route('tenant.update.version') }}" method="POST">
                         @csrf
                         <h5>New version is available!</h5>
-                        <p>Get the latest version</p>
+                        <p>Update to <strong>{{ $latestVersion }}</strong></p>
                         <button type="submit" class="btn btn-success">Update</button>
                     </form>
                 </div>
+                @endif
             </div>
         </div>
     </nav>

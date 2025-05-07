@@ -38,7 +38,7 @@
 
                         <div class="form-group">
                             <label class="form-label">Email address</label>
-                            <input type="email" class="form-control form-control" name="email" placeholder="email@company.com">
+                            <input type="email" class="form-control form-control" name="email" value="{{ tenant('companyName') }}" placeholder="email@company.com">
                         </div>
                         <div class="form-group mb-0">
                             <label class="form-label" for="exampleTextarea">Concern</label>

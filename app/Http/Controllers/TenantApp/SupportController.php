@@ -11,12 +11,7 @@ class SupportController extends Controller
 {
     public function index()
     {
-        $tenant = tenant();
-        if (version_compare($tenant->version, '2.0.0', '>=')) {
-            return view('tenants.pages.contact_support');
-        } else {
-            // Fallback to the old version
-        }
+        return view('tenants.pages.contact_support');
     }
     public function submit(Request $request)
     {

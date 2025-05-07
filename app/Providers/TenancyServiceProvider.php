@@ -7,7 +7,9 @@ namespace App\Providers;
 use App\Jobs\SeedStylesJob;
 use App\Jobs\SeedTenantAdminJob;
 use App\Models\TenantsLayout;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -107,15 +109,26 @@ class TenancyServiceProvider extends ServiceProvider
         $this->mapRoutes();
 
         View::composer('*', function ($view) {
+            $tenant = tenant();
+
+            $latestVersion = Cache::store('file')->remember('latest_release_version', now()->addMinutes(60), function () {
+                $response = Http::get('https://api.github.com/repos/Lauxness/LaravelFinalProject/releases/latest');
+                return $response->json()['tag_name'] ?? 'v1.0.0';
+            });
+
             $centralDomains = ['127.0.0.1', 'localhost'];
             $currentDomain = Request::getHost();
-            if (!in_array($currentDomain, $centralDomains)) {
-                $styles = TenantsLayout::first();
-            } else {
-                $styles = null;
-            }
-            $view->with('styles', $styles);
+            $styles = !in_array($currentDomain, $centralDomains)
+                ? TenantsLayout::first()
+                : null;
+
+            $view->with([
+                'tenant' => $tenant,
+                'latestVersion' => $latestVersion,
+                'styles' => $styles,
+            ]);
         });
+
         $this->makeTenancyMiddlewareHighestPriority();
     }
 

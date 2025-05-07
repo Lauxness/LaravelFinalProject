@@ -11,16 +11,14 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
     public function create(): View|RedirectResponse
     {
         $tenant = tenant();
-        if (version_compare($tenant->version, '2.0.0', '>=')) {
-            return view('tenants.auth.tenant-login-v2');
-        } else {
+        if (version_compare($tenant->version, 'v2.0.0', '>=')) {
             return view('tenants.auth.tenant-login');
+        } else {
+
+            return view('tenants.auth.tenant-login-v2');
         }
     }
     /**

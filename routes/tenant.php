@@ -38,7 +38,11 @@ Route::middleware([
     Route::post('/tenant/update-version', [TenantVersionController::class, 'update'])->name('tenant.update.version');
 
 
-    Route::get('/auth/google', [SocialateController::class, 'googleLogin'])->name('google.login');
+
+    Route::controller(SocialateController::class)->group(function () {
+        Route::get('/auth/google', [SocialateController::class, 'googleLogin'])->name('google.login');
+        Route::get('/auth/google/callback', [SocialateController::class, 'googleAuth'])->name('google.callback');
+    });
     Route::patch('tenants_layout', [TenantsLayoutController::class, 'update'])->middleware(['auth', AdminMiddelware::class])->name('update_layout');
     Route::resource('cars', CarsController::class)->middleware(['auth']);
     Route::resource('booking', BookingController::class)->middleware(['auth']);
