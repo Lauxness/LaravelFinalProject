@@ -19,7 +19,12 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('tenants.auth.register');
+        $tenant = tenant();
+        if (version_compare($tenant->version, 'v2.0.1', '>=')) {
+            return view('tenants.auth.register-v2');
+        } else {
+            return view('tenants.auth.register');
+        }
     }
 
     /**
