@@ -8,6 +8,7 @@ use App\Http\Controllers\TenantApp\CarsController;
 use App\Http\Controllers\TenantApp\DashboardController;
 use App\Http\Controllers\TenantApp\HomeController;
 use App\Http\Controllers\TenantApp\InvoiceController;
+use App\Http\Controllers\TenantApp\SupportController;
 use App\Http\Controllers\TenantApp\TenantProfileController;
 use App\Http\Controllers\TenantApp\TenantUserController;
 use App\Http\Controllers\TenantApp\TenantsLayoutController;
@@ -25,6 +26,8 @@ Route::middleware([
     SubDomainPauseChecker::class
 ])->group(function () {
     Route::get("/", [HomeController::class, 'getCars'])->name('index');
+    Route::get("/contact/support", [SupportController::class, 'index'])->name("contact.support");
+    Route::post("/contact/support", [SupportController::class, 'submit'])->name("contact.support");
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', AdminMiddelware::class])->name('dashboard');
     Route::get('/prices', function () {

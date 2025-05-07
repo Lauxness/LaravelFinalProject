@@ -103,6 +103,13 @@
                             <span class="pc-mtext">Users</span>
                         </a>
                     </li>
+                    <li class="pc-item {{ Request::is('/contact/support') ? 'active' : '' }}">
+                        <a href="{{route('contact.support')}}" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-headset"></i></span>
+                            <span class="pc-mtext">Contact support</span>
+                        </a>
+                    </li>
+
                     <li class="pc-item" style="cursor: pointer;" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <a class="pc-link">
                             <span class="pc-micon"><i class="ti ti-logout"></i></span>
