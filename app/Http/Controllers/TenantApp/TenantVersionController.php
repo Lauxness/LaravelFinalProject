@@ -15,7 +15,7 @@ class TenantVersionController extends Controller
 
         $latestVersion = $this->getLatestGitHubReleaseVersion();
         $tenant->update(['version' => $latestVersion]);
-        return response()->json(['message' => 'Updated to ' . $latestVersion]);
+        return redirect()->back()->with('success', 'Updated to'  . $latestVersion);
     }
     private function getLatestGitHubReleaseVersion()
     {

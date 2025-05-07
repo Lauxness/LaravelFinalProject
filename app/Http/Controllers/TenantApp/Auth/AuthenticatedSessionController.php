@@ -16,11 +16,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View|RedirectResponse
     {
-
-        return view('tenants.auth.tenant-login');
+        $tenant = tenant();
+        if (version_compare($tenant->version, '2.0.0', '>=')) {
+            return view('tenants.auth.tenant-login-v2');
+        } else {
+            return view('tenants.auth.tenant-login');
+        }
     }
-
-
     /**
      * Handle an incoming authentication request.
      */
