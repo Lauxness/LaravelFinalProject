@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <update>
-    <step command="git pull origin fix_registration" />
+    <step command="git pull origin main" />
     <step command="composer install --no-dev --optimize-autoloader" />
     <step command="php artisan migrate --force" />
     <step command="php artisan tenants:migrate --force" />
