@@ -36,9 +36,6 @@ Route::middleware([
     })->middleware(['auth', AdminMiddelware::class])->name('subscriptions');
 
     Route::post('/tenant/update-version', [TenantVersionController::class, 'update'])->name('tenant.update.version');
-
-
-
     Route::controller(SocialateController::class)->group(function () {
         Route::get('/auth/google', [SocialateController::class, 'googleLogin'])->name('google.login');
         Route::get('/auth/google/callback', [SocialateController::class, 'googleAuth'])->name('google.callback');
@@ -51,10 +48,12 @@ Route::middleware([
         ->name('booking.approve');
 
     Route::get('/booking/create/{car}', [BookingController::class, 'create'])->name('booking.create');
-
     Route::get('/users', [TenantUserController::class, 'index'])
         ->middleware(['auth', AdminMiddelware::class])
         ->name('users');
+    Route::get('/test', function () {
+        return "gasdhjfgashjfgashjdfgahjsfgahjsfgjsadf";
+    });
 
     Route::get('/generate_report', [InvoiceController::class, 'generate'])->middleware(['auth', AdminMiddelware::class])->name('generate');
     Route::middleware('auth')->group(function () {
