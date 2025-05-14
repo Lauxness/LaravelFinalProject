@@ -52,7 +52,7 @@ Route::middleware([
         ->middleware(['auth', AdminMiddelware::class])
         ->name('users');
     Route::get('/test', function () {
-        return "gasdhjfgashjfgashjdfgahjsfgahjsfgjsadf";
+        return "Updated aghdsfjkahsfjkahsfkashfjkashdf";
     });
 
     Route::get('/generate_report', [InvoiceController::class, 'generate'])->middleware(['auth', AdminMiddelware::class])->name('generate');
