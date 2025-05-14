@@ -34,11 +34,32 @@ class TenantVersionController extends Controller
         $summary = collect($output)->map(function ($entry) {
             return $entry['command'] . ': ' . strtok($entry['output'], "\n");
         })->implode("\n");
+        $latestVersion = $this->getLatestGitHubReleaseVersion();
+        $this->updateEnvValue('APP_VERSION', $latestVersion);
         return redirect()->back()->with('success', 'Updated to latest');
     }
     private function getLatestGitHubReleaseVersion()
     {
         $response = Http::get('https://api.github.com/repos/Lauxness/LaravelFinalProject/releases/latest');
         return $response->json()['tag_name'];
+    }
+    protected function updateEnvValue($key, $value)
+    {
+        $envPath = base_path('.env');
+
+        if (!file_exists($envPath)) {
+            return false;
+        }
+
+        $envContent = file_get_contents($envPath);
+        if (preg_match("/^{$key}=.*/m", $envContent)) {
+            $envContent = preg_replace("/^{$key}=.*/m", "{$key}={$value}", $envContent);
+        } else {
+            $envContent .= "\n{$key}={$value}\n";
+        }
+
+        file_put_contents($envPath, $envContent);
+
+        return true;
     }
 }
