@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <update>
     <!-- Pull latest code from GitHub -->
-    <step command="git pull origin main" />
+    <step command="git pull origin fix_registration" />
 
     <!-- Install/update PHP dependencies -->
     <step command="composer install --no-dev --optimize-autoloader" />
