@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<update>
+    <!-- Pull latest code from GitHub -->
+    <step command="git pull origin main" />
+
+    <!-- Install/update PHP dependencies -->
+    <step command="composer install --no-dev --optimize-autoloader" />
+
+    <!-- Run base migrations -->
+    <step command="php artisan migrate --force" />
+
+    <!-- Run tenant-specific migrations -->
+    <step command="php artisan tenants:migrate --force" />
+
+    <!-- Clear and cache configuration -->
+    <step command="php artisan config:clear" />
+    <step command="php artisan config:cache" />
+
+    <!-- Cache routes and views -->
+    <step command="php artisan route:cache" />
+    <step command="php artisan view:cache" />
+</update>

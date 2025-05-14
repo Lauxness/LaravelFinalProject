@@ -3,15 +3,12 @@
 <!-- [Head] start -->
 
 <head>
-    <title>Sign up | Mantis Bootstrap 5 Admin Template</title>
+    <title>Register</title>
     <!-- [Meta] -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Mantis is made using Bootstrap 5 design framework. Download the free admin template & use it for your project.">
-    <meta name="keywords" content="Mantis, Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
-    <meta name="author" content="CodedThemes">
-    <link rel="icon" href="../assets/images/favicon.svg" type="image/x-icon">
+    <link rel="icon" href="{{ asset($styles->company_logo ?? 'images/car-2.jpg') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
     <link rel="stylesheet" href="../assets/fonts/tabler-icons.min.css">
     <link rel="stylesheet" href="../assets/fonts/feather.css">
@@ -37,7 +34,7 @@
         <div class="auth-wrapper v3">
             <div class="auth-form">
                 <div class="auth-header">
-                    <a href="#"><img src="../assets/images/logo-dark.svg" alt="img"></a>
+                    <a class="b-brand text-primary" style="font-size: 1.3em; text-transform:uppercase; font-weight:bold;" href="/">{{ tenant('companyName') }}</a>
                 </div>
                 <div class="card my-5">
                     <form class="card-body" method="POST" action="{{ route('register') }}">

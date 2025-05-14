@@ -111,11 +111,10 @@ class TenancyServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $tenant = tenant();
 
-            $latestVersion = Cache::store('file')->remember('latest_release_version', now()->addMinutes(60), function () {
+            $latestVersion = Cache::store('file')->remember('latest_release_version', now()->addMinutes(5), function () {
                 $response = Http::get('https://api.github.com/repos/Lauxness/LaravelFinalProject/releases/latest');
                 return $response->json()['tag_name'] ?? 'v1.0.0';
             });
-
             $centralDomains = ['127.0.0.1', 'localhost'];
             $currentDomain = Request::getHost();
             $styles = !in_array($currentDomain, $centralDomains)
