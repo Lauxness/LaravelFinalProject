@@ -115,7 +115,11 @@
                         </form>
                     </li>
                 </ul>
-                @if($tenant && $tenant->version === $latestVersion)
+                @php
+                $currentVersion = config('app.version');
+                @endphp
+
+                @if($currentVersion !== $latestVersion)
                 <div class="card text-center">
                     <form class="card-body" action="{{ route('tenant.update.version') }}" method="POST">
                         @csrf
@@ -125,6 +129,7 @@
                     </form>
                 </div>
                 @endif
+
             </div>
         </div>
     </nav>
