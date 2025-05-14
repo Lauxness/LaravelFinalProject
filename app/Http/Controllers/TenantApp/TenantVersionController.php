@@ -13,10 +13,10 @@ class TenantVersionController extends Controller
     public function update(Request $request)
     {
 
-        $xmlPath = base_path('update-script.xml');
+        $xmlPath = base_path('run-update-file.xml');
 
         if (!File::exists($xmlPath)) {
-            return redirect()->back()->with('error', 'update-script.xml not found');
+            return redirect()->back()->with('error', 'run-update-file.xml not found');
         }
 
         $xml = simplexml_load_file($xmlPath);
@@ -34,8 +34,7 @@ class TenantVersionController extends Controller
         $summary = collect($output)->map(function ($entry) {
             return $entry['command'] . ': ' . strtok($entry['output'], "\n");
         })->implode("\n");
-
-        return redirect()->back()->with('success', "Update completed.\n\n" . $summary);
+        return redirect()->back()->with('success', 'Updated to latest');
     }
     private function getLatestGitHubReleaseVersion()
     {
