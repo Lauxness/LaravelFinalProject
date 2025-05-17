@@ -21,8 +21,7 @@ class TenantVersionController extends Controller
 
         $xml = simplexml_load_file($xmlPath);
         $output = [];
-        $latestVersion = $this->getLatestGitHubReleaseVersion();
-        $this->updateEnvValue('APP_VERSION', $latestVersion);
+
         foreach ($xml->step as $step) {
             $command = (string) $step['command'];
             $fullCommand = "cd " . base_path() . " && $command 2>&1";
@@ -32,7 +31,8 @@ class TenantVersionController extends Controller
                 'output' => trim($result),
             ];
         }
-
+        $latestVersion = $this->getLatestGitHubReleaseVersion();
+        $this->updateEnvValue('APP_VERSION', $latestVersion);
         return redirect()->back()->with('success', 'Updated to latest');
     }
     private function getLatestGitHubReleaseVersion()
