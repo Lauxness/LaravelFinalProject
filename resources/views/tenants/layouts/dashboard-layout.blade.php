@@ -76,7 +76,7 @@
                     </li>
 
                     <li class="pc-item pc-caption">
-                        <label>UI Components</label>
+                        <label>Actions</label>
                         <i class="ti ti-dashboard"></i>
                     </li>
                     <li class="pc-item {{ Request::is('/cars') ? 'active' : '' }}">

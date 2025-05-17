@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\Jobs\SeedStylesJob;
 use App\Jobs\SeedTenantAdminJob;
 use App\Models\TenantsLayout;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
@@ -127,6 +128,7 @@ class TenancyServiceProvider extends ServiceProvider
                 'styles' => $styles,
             ]);
         });
+        Artisan::call('config:clear');
 
         $this->makeTenancyMiddlewareHighestPriority();
     }
