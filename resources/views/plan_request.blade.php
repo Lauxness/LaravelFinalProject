@@ -9,36 +9,37 @@
                 <div class="col-md-12">
                     <div class="card card-plain table-plain-bg">
                         <div class="card-header ">
-                            <h4 class="card-title">Tenants list Table</h4>
+                            <h4 class="card-title">Plan Requests Table</h4>
 
                         </div>
                         <div class="card-body table-full-width table-responsive">
                             <table class="table table-hover">
 
                                 <thead>
-                                    <th>ID</th>
                                     <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
+                                    <th>Company Name</th>
+                                    <th>Plan</th>
+
                                     <th>Sub Domain</th>
                                     <th class="text-center">Action</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($tenants as $tenant)
+                                    @foreach($planRequests as $planRequest)
                                     <tr>
-                                        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;">{{ $tenant->getAttribute('id') }}</td>
-                                        <td style="white-space: nowrap;">{{ $tenant->getAttribute('name') }}</td>
-                                        <td style="white-space: nowrap;">{{ $tenant->getAttribute('email') }}</td>
-                                        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; ">{{ $tenant->getAttribute('address') }}</td>
-                                        <td style="white-space: nowrap;">{{ $tenant->getAttribute('domain') }}</td>
+                                        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;">{{$planRequest->tenant->name}}</td>
+                                        <td style="white-space: nowrap;">{{$planRequest->tenant->companyName}}</td>
+                                        <td style="white-space: nowrap;">{{$planRequest->plan}}</td>
+                                        <td style="white-space: nowrap;">{{$planRequest->tenant->domain}}</td>
                                         <td style="white-space: nowrap;">
-                                            @if($tenant->tenancy_db_name == null)
-                                            <form action="{{ route('tenants.accept', $tenant->id) }}" method="POST" style="display: inline;">
+
+                                            <form action="{{route('plan-requests.update',$planRequest )}}" method="POST" style="display: inline;">
+
                                                 @csrf
+                                                @method('PATCH')
                                                 <button type="submit" title="Accept" class="btn btn-primary" style="color: green; cursor: pointer; color: green; border: none;  "><i class="fa fa-check"></i></button>
                                             </form>
-                                            @endif
-                                            <a type="btn" title="Edit" href="{{route('tenants.edit', $tenant->id )}}" style=" border: none; " class="btn btn-primary"><i class="fa fa-edit"></i></a>
+
+                                            <a type="btn" title="Edit" href="" style=" border: none; " class="btn btn-primary"><i class="fa fa-edit"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

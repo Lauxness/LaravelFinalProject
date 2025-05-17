@@ -97,6 +97,12 @@
                             <span class="pc-mtext">Users</span>
                         </a>
                     </li>
+                    <li class="pc-item {{ Request::is('/prices') ? 'active' : '' }}">
+                        <a href="/prices" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-report-money"></i></span>
+                            <span class="pc-mtext">Plans</span>
+                        </a>
+                    </li>
                     <li class="pc-item {{ Request::is('/contact/support') ? 'active' : '' }}">
                         <a href="{{route('contact.support')}}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-headset"></i></span>

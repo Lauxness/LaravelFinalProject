@@ -33,9 +33,7 @@ class TenantController extends Controller
     public function store(TenantStoreRequest $request)
     {
         $tenant = Tenant::create($request->validated());
-
-        session()->flash('success', 'Tenant Application has been Submitted!.');
-        return redirect()->route('tenants.create');
+        return redirect()->back()->with('success', 'Tenant Application has been Submitted!.');
     }
 
     /**
@@ -51,8 +49,8 @@ class TenantController extends Controller
      */
     public function edit(string $id)
     {
-        $tenant = Tenant::findOrFail($id);
-        return view('edit-tenant', compact('tenant'));
+        $tenant1 = Tenant::findOrFail($id);
+        return view('edit-tenant', compact('tenant1'));
     }
 
     /**

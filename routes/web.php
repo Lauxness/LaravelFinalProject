@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PlanReqestModelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialateController;
 use App\Http\Controllers\TenantController;
@@ -17,6 +18,8 @@ foreach (config('tenancy.central_domains') as $domain) {
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->middleware(['auth', 'verified'])->name('dashboard');
+        Route::resource('plan-requests', PlanReqestModelController::class)->only(['index', 'update', 'destroy']);
+
         // Apply middleware to all tenant resource routes
         Route::resource('tenants', TenantController::class)->middleware(['auth', 'verified']);
         Route::get('tenants/create', [TenantController::class, 'create'])->name('tenants.create')->withoutMiddleware(['auth', 'verified']);

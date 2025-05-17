@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\PlanReqestModelController;
 use App\Http\Controllers\SocialateController;
 use App\Http\Controllers\TenantApp\BookingController;
 use App\Http\Controllers\TenantApp\CarsController;
@@ -54,6 +55,8 @@ Route::middleware([
     Route::get('/test', function () {
         return "Updated aghdsfjkahsfjkahsfkashfjkashdf";
     });
+
+    Route::resource('plan-requests', PlanReqestModelController::class)->only(['store']);
 
     Route::get('/generate_report', [InvoiceController::class, 'generate'])->middleware(['auth', AdminMiddelware::class])->name('generate');
     Route::middleware('auth')->group(function () {

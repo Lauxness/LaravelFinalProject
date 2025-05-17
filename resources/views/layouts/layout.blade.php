@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{url('../assets/img/apple-icon.png')}}">
     <link rel="icon" type="image/png" href="{{url('assets/img/favicon.ico')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Light Bootstrap Dashboard - Free Bootstrap 4 Admin Dashboard by Creative Tim</title>
+    <title>Rent X</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
@@ -21,7 +21,7 @@
         <div class="sidebar" data-image="{{url('/assets/img/sidebar-5.jpg')}}">
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
+                    <a href="#" class="simple-text">
                         Rent X
                     </a>
                 </div>
@@ -34,14 +34,14 @@
                     </li>
                     <li class="nav-item {{ Request::is('tenants') ? 'active' : '' }}">
                         <a class="nav-link " href="{{ route('tenants.index') }}">
-                            <i class="nc-icon nc-notes"></i>
+                            <i class="nc-icon nc-bullet-list-67"></i>
                             <p>Tenants List</p>
                         </a>
                     </li>
-                    <li class="nav-item {{ Request::is('tenants') ? 'active' : '' }}">
-                        <a class="nav-link " href="{{ route('tenants.index') }}">
-                            <i class="nc-icon nc-notes"></i>
-                            <p>Feedbacks</p>
+                    <li class="nav-item {{ Request::is('plan-requests') ? 'active' : '' }}">
+                        <a class="nav-link " href="{{ route('plan-requests.index') }}">
+                            <i class="nc-icon nc-"></i>
+                            <p>plan request</p>
                         </a>
                     </li>
 
@@ -65,20 +65,7 @@
                                     <span class="d-lg-none">Dashboard</span>
                                 </a>
                             </li>
-                            <li class="dropdown nav-item">
-                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-planet"></i>
-                                    <span class="notification">5</span>
-                                    <span class="d-lg-none">Notification</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Notification 1</a>
-                                    <a class="dropdown-item" href="#">Notification 2</a>
-                                    <a class="dropdown-item" href="#">Notification 3</a>
-                                    <a class="dropdown-item" href="#">Notification 4</a>
-                                    <a class="dropdown-item" href="#">Another notification</a>
-                                </ul>
-                            </li>
+
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nc-icon nc-zoom-split"></i>
@@ -91,19 +78,6 @@
                                 <a class="nav-link" href="#pablo">
                                     <span class="no-icon">Account</span>
                                 </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="no-icon">Dropdown</span>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
                             </li>
                             <li class="nav-item" style="cursor: pointer;" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <a class="nav-link">
