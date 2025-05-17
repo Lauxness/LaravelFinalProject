@@ -12,7 +12,7 @@ class TenantVersionController extends Controller
 {
     public function update(Request $request)
     {
-
+        set_time_limit(0);
         $xmlPath = base_path('run-update-file.xml');
 
         if (!File::exists($xmlPath)) {
