@@ -40,7 +40,7 @@
                     </li>
                     <li class="nav-item {{ Request::is('plan-requests') ? 'active' : '' }}">
                         <a class="nav-link " href="{{ route('plan-requests.index') }}">
-                            <i class="nc-icon nc-"></i>
+                            <i class="nc-icon nc-bullet-list-67"></i>
                             <p>plan request</p>
                         </a>
                     </li>
