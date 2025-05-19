@@ -27,7 +27,7 @@ class StoreCarsRequest extends FormRequest
             'car_category'    => 'required|string|max:100',
             'rates'           => 'required|string|max:100',
             'seats'           => 'required|integer|min:1',
-            'status'          => 'required|string|in:Available,Rented',
+            'status'          => 'required|string|in:Available,Maintainance',
             'car_image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }

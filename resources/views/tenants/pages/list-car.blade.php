@@ -74,8 +74,8 @@
                                         <div class="form-group">
                                             <label class="form-label">Status</label>
                                             <select class="form-select" name="status">
-                                                <option>Available</option>
-                                                <option>Rented</option>
+                                                <option value="Available">Available</option>
+                                                <option value="Maintainance">Maintainance</option>
                                             </select>
                                         </div>
                                         <div class="form-group">

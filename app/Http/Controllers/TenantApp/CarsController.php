@@ -29,6 +29,10 @@ class CarsController extends Controller
         if (Auth::user()->role == 'admin') {
             return view('tenants.pages.cars-list', compact('cars'));
         } else {
+            $cars = Cars::where('status', 'available')
+                ->latest()
+                ->take($limit)
+                ->get();
             return view('tenants.pages.users.cars_list', compact('cars'));
         }
     }

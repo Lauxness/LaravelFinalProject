@@ -92,22 +92,17 @@
                                         </td>
                                         <td class="text-center">
                                             <ul class="list-inline me-auto mb-0">
-                                                <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="View">
-                                                    <a href="#" class="avtar avtar-xs btn-link-secondary" data-bs-toggle="modal"
-                                                        data-bs-target="#cust-modal">
-                                                        <i class="ti ti-eye f-18"></i>
-                                                    </a>
-                                                </li>
+
                                                 <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="Edit">
                                                     <a href="{{ route('cars.edit', $car->id) }}" class="avtar avtar-xs btn-link-primary">
                                                         <i class="ti ti-edit-circle f-18"></i>
                                                     </a>
                                                 </li>
                                                 <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="Delete">
-                                                    <form action="{{ route('cars.destroy', $car) }}" method="POST" style="display:inline;">
+                                                    <form id="deleteForm" action="{{ route('cars.destroy', $car) }}" method="POST" style="display:inline;">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="avtar avtar-xs btn-link-danger" style="border: none; background: none;">
+                                                        <button type="button" onclick="confirmDelete()" class="avtar avtar-xs btn-link-danger" style="border: none; background: none;">
                                                             <i class="ti ti-trash f-18"></i>
                                                         </button>
                                                     </form>
@@ -123,9 +118,23 @@
                     </div>
                 </div>
             </div>
-            <!-- [ sample-page ] end -->
         </div>
-        <!-- [ Main Content ] end -->
     </div>
 </div>
+<script>
+    function confirmDelete() {
+        Swal.fire({
+            title: "Confirm Update",
+            text: "Are you sure you want to delete this car?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Confirm",
+            cancelButtonText: "Cancel"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('deleteForm').submit();
+            }
+        });
+    }
+</script>
 @endsection

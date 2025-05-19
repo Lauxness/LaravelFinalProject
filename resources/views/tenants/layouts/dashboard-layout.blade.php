@@ -127,21 +127,18 @@
 
                 @if($currentVersion !== $latestVersion)
                 <div class="card text-center">
-                    <form class="card-body" action="{{ route('tenant.update.version') }}" method="POST">
+                    <form id="updateForm" class="card-body" action="{{ route('tenant.update.version') }}" method="POST">
                         @csrf
                         <h5>New version is available!</h5>
                         <p>Update to <strong>{{ $latestVersion }}</strong></p>
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="button" class="btn btn-success" onclick="confirmUpdate()">Update</button>
                     </form>
                 </div>
                 @endif
                 <div class="card text-center">
                     <div class="card-body">
-                        <h5>Current version</h5>
-                        <p><strong>{{ $latestVersion }}</strong></p>
+                        <p>Current version: <strong>{{ $currentVersion }}</strong></p>
                     </div>
-
-
                 </div>
 
             </div>
@@ -750,7 +747,24 @@
             confirmButtonText: "OK"
         });
     </script>
+
     @endif
+    <script>
+        function confirmUpdate() {
+            Swal.fire({
+                title: "Confirm Update",
+                text: "Are you sure you want to update to version {{ $latestVersion }}?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Confirm",
+                cancelButtonText: "Cancel"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('updateForm').submit();
+                }
+            });
+        }
+    </script>
     @if (session('error'))
     <script>
         Swal.fire({
@@ -762,7 +776,6 @@
     </script>
     @endif
     <script>
-        // Update RTL Direction
         function updateRtl(isChecked) {
             document.getElementById('rtl').value = isChecked ? 1 : 0;
             layout_rtl_change(isChecked);

@@ -24,7 +24,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <form class="row" action="{{ route('cars.update', $car) }}" method="POST" enctype="multipart/form-data">
+                        <form class="row" id="updateForm" action="{{ route('cars.update', $car) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
                             <div class="col-md-6">
@@ -73,7 +73,7 @@
                                             <label class="form-label">Status</label>
                                             <select class="form-select" name="status">
                                                 <option value="Available" {{ $car->status == 'Available' ? 'selected' : '' }}>Available</option>
-                                                <option value="Rented" {{ $car->status == 'Rented' ? 'selected' : '' }}>Rented</option>
+                                                <option value="Maintainance" {{ $car->status == 'Rented' ? 'selected' : '' }}>Maintainance</option>
                                             </select>
 
                                         </div>
@@ -84,7 +84,7 @@
                                         </div>
                                         <div class="text-end btn-page mb-0 mt-4">
                                             <a class="btn btn-outline-secondary" href="/cars">Cancel</a>
-                                            <button class="btn btn-primary" type="submit">Update car</button>
+                                            <button class="btn btn-primary" type="button" onclick="confirmUpdate()">Update car</button>
                                         </div>
                                     </div>
                                 </div>
@@ -96,4 +96,21 @@
         </div>
     </div>
 </div>
+<script>
+    function confirmUpdate() {
+        Swal.fire({
+            title: "Confirm Update",
+            text: "Are you sure you want to update this car?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Confirm",
+            cancelButtonText: "Cancel"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('updateForm').submit();
+            }
+        });
+    }
+</script>
+
 @endsection
