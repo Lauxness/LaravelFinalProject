@@ -135,6 +135,11 @@
                     </form>
                 </div>
                 @endif
+                <div class="card text-center">
+                    <h5>Current version</h5>
+                    <p><strong>{{ $latestVersion }}</strong></p>
+
+                </div>
 
             </div>
         </div>
