@@ -50,6 +50,7 @@ class BookingController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
+
         $validated = $request->validated();
 
         $carId = $validated['car_id'];
@@ -65,8 +66,6 @@ class BookingController extends Controller
             ->where('time', $time)
             ->exists();
 
-
-        $status = Cars::where($carId)->status;
         if ($exactMatch) {
             return redirect()->back()->withErrors(['time' => 'This car is already booked at that exact time.']);
         }
