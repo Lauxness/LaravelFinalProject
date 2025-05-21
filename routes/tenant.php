@@ -14,7 +14,6 @@ use App\Http\Controllers\TenantApp\TenantProfileController;
 use App\Http\Controllers\TenantApp\TenantUserController;
 use App\Http\Controllers\TenantApp\TenantsLayoutController;
 use App\Http\Controllers\TenantApp\TenantVersionController;
-use App\Http\Controllers\TenantApp\TestController;
 use App\Http\Middleware\AdminMiddelware;
 use App\Http\Middleware\SubDomainPauseChecker;
 use Illuminate\Support\Facades\Route;
@@ -36,9 +35,6 @@ Route::middleware([
     Route::get('/prices', function () {
         return view('tenants.pages.subscriptions');
     })->middleware(['auth', AdminMiddelware::class])->name('subscriptions');
-
-    Route::get("/test10", [TestController::class, 'index'])->name('index');
-
 
     Route::post('/tenant/update-version', [TenantVersionController::class, 'update'])->name('tenant.update.version');
     Route::controller(SocialateController::class)->group(function () {
