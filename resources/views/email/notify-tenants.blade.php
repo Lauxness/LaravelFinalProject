@@ -12,6 +12,9 @@
     <p>Email: {{ $tenant->email }}</p>
     <p>Password: {{ $password }}</p>
     <p>Please log in using these credentials.</p>
+    <p>URL: <a href="{{$tenant->domain}}.localhost:8000">Click here</a></p>
+
+
 </body>
 
 </html>
