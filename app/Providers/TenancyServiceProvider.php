@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Stancl\JobPipeline\JobPipeline;
@@ -118,9 +119,19 @@ class TenancyServiceProvider extends ServiceProvider
             });
             $centralDomains = ['127.0.0.1', 'localhost'];
             $currentDomain = Request::getHost();
-            $styles = !in_array($currentDomain, $centralDomains)
-                ? TenantsLayout::first()
-                : null;
+            $styles = null;
+
+            if (!in_array($currentDomain, $centralDomains)) {
+                if (Schema::hasTable('tenants_layouts')) {
+                    $styles = TenantsLayout::first();
+                    if (is_null($styles)) {
+                        abort(404);
+                    }
+                } else {
+                    abort(404);
+                }
+            }
+
 
             $view->with([
                 'tenant' => $tenant,
