@@ -13,4 +13,11 @@ class TenantUserController extends Controller
         $users = User::latest()->get();
         return view('tenants.pages.user-list', compact('users'));
     }
+    public function promote(Request $request, User $user)
+    {
+
+        $user->role = 'admin';
+        $user->save();
+        return redirect()->back()->with('success', 'User promoted to admin');
+    }
 }
