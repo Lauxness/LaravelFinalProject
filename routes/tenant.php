@@ -52,8 +52,8 @@ Route::middleware([
     Route::get('/users', [TenantUserController::class, 'index'])
         ->middleware(['auth', AdminMiddelware::class])
         ->name('users');
-    Route::get('/test', function () {
-        return "Updated aghdsfjkahsfjkahsfkashfjkashdf";
+    Route::get('/test10', function () {
+        return "Updatedasdjdfaksdfsaf";
     });
 
     Route::resource('plan-requests', PlanReqestModelController::class)->only(['store']);
