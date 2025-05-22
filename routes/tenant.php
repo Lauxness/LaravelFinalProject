@@ -14,6 +14,7 @@ use App\Http\Controllers\TenantApp\TenantProfileController;
 use App\Http\Controllers\TenantApp\TenantUserController;
 use App\Http\Controllers\TenantApp\TenantsLayoutController;
 use App\Http\Controllers\TenantApp\TenantVersionController;
+use App\Http\Controllers\TenantApp\TestController;
 use App\Http\Middleware\AdminMiddelware;
 use App\Http\Middleware\SubDomainPauseChecker;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,7 @@ Route::middleware([
         ->name('users');
 
     Route::resource('plan-requests', PlanReqestModelController::class)->only(['store']);
+    Route::get("/test10", [TestController::class, "index"]);
 
     Route::get('/generate_report', [InvoiceController::class, 'generate'])->middleware(['auth', AdminMiddelware::class])->name('generate');
     Route::middleware('auth')->group(function () {
